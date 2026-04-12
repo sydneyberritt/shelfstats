@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { BookDataContext } from '../BookDataContext';
-
+import './Home.css';
 
 export function Home() {
     // Get parseCSV function 

@@ -1,0 +1,105 @@
+.home {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.home-hero {
+  max-width: 860px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.home-eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.home-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.home-subtitle {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.home-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.home-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--amber);
+  line-height: 1;
+  min-width: 2rem;
+}
+
+.step-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+
+.btn-outline {
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--ink);
+}
+.btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+
+.btn-primary {
+  background: var(--amber);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) { background: var(--amber-light); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.file-label { cursor: pointer; }
+
+@media (max-width: 640px) {
+  .home-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+}
