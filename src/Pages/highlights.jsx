@@ -1,12 +1,17 @@
 import { useContext } from 'react';
 import { BookDataContext } from '../BookDataContext';
+import './pages.css';
 
 export function Highlights() {
 
   const { parsedData } = useContext(BookDataContext);
 
   if (parsedData.length === 0) {
-    return <p>No data yet - upload your CSV on the home page.</p>;
+    return (
+      <div className="empty-state"> 
+        <p>No data yet - upload your CSV on the home page.</p>
+      </div>
+    );
   }
 
   const booksRead = parsedData.filter(b => b["Exclusive Shelf"] === "read");
@@ -38,59 +43,83 @@ export function Highlights() {
 
 
   return (
-    <>
-      <h1>Highlights</h1>
-      <p>Your most notable reads</p>
+    <div className="page">
 
-      <h2>Favourite Author</h2>
-      <p>{topAuthorEntry[0]} ({topAuthorEntry[1]} books )</p>
+      <div className="page-header">
+        <h1 className="page-title">Highlights</h1>
+        <p className="page-sub">Your most notable reads</p>
+      </div>
 
-      <h2>Stats</h2>
-      <p> 5-star books: {fiveStarCount}</p>
-
-      <p>
-        Reading since:{' '}
-        {firstBook ? new Date(firstBook["Date Read"]).getFullYear() : '—'}
-      </p>
-
-      <h2>Longest Book</h2>
-      {longestBook && (
-        <p>
-          {longestBook["Title"]} by {longestBook["Author"]} — {' '}
-          {longestBook["Number of Pages"]} pages
-        </p>
+      {topAuthorEntry && (
+        <div className="highlight-banner">
+          <span className="highlight-label">Favourite author</span>
+          <span className="highlight-value">
+            {topAuthorEntry[0]} <em>({topAuthorEntry[1]} books)</em>
+          </span>
+        </div>
       )}
 
-      <h2>Shortest Book</h2>
-      {shortestBook && (
-        <p>
-          {shortestBook["Title"]} by {shortestBook["Author"]} —{' '}
-          {shortestBook["Number of Pages"]} pages
-        </p>
+      <div className="stat-grid">
+        <div className="stat-card accent">
+          <span className="stat-num">{fiveStarCount}</span>
+          <span className="stat-label">5-star reads</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-num">
+            {firstBook ? new Date(firstBook["Date Read"]).getFullYear() : '—'}
+          </span>
+          <span className="stat-label">Reading since</span>
+        </div>
+      </div>
+
+      <div className="book-card-grid">
+        {longestBook && (
+          <div className="book-card">
+            <span className="book-card-label">📖 Longest Read</span>
+            <p className="book-card-title">{longestBook["Title"]}</p>
+            <p className="book-card-author">by {longestBook["Author"]}</p>
+            <p className="book-card-detail">{longestBook["Number of Pages"]} pages</p>
+          </div>
+        )}
+        {shortestBook && (
+          <div className="book-card">
+            <span className="book-card-label">🌱 Shortest Read</span>
+            <p className="book-card-title">{shortestBook["Title"]}</p>
+            <p className="book-card-author">by {shortestBook["Author"]}</p>
+            <p className="book-card-detail">{shortestBook["Number of Pages"]} pages</p>
+          </div>
+        )}
+        {firstBook && (
+          <div className="book-card">
+            <span className="book-card-label">🕰 First Tracked</span>
+            <p className="book-card-title">{firstBook["Title"]}</p>
+            <p className="book-card-author">by {firstBook["Author"]}</p>
+            <p className="book-card-detail">Read: {firstBook["Date Read"]}</p>
+          </div>
+        )}
+        {lastBook && lastBook !== firstBook && (
+          <div className="book-card">
+            <span className="book-card-label">🆕 Most Recent</span>
+            <p className="book-card-title">{lastBook["Title"]}</p>
+            <p className="book-card-author">by {lastBook["Author"]}</p>
+            <p className="book-card-detail">Read: {lastBook["Date Read"]}</p>
+          </div>
+        )}
+      </div>
+
+      {topAuthorBooks.length > 0 && (
+        <div className="chart-card">
+          <h2 className="chart-title">All books by {topAuthorEntry[0]}</h2>
+          <ul className="simple-list">
+            {topAuthorBooks.map((b, i) => (
+              <li key={i}>
+                {b["Title"]} <span className="muted">({b["Number of Pages"]} pp)</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
-      <h2>First Book Read</h2>
-      {firstBook && (
-        <p>
-          {firstBook["Title"]} — {firstBook["Date Read"]}
-        </p>
-      )}
-
-      <h2>Most Recent Book</h2>
-      {lastBook && (
-        <p>
-          {lastBook["Title"]} — {lastBook["Date Read"]}
-        </p>
-      )}
-
-      <h2>Books Read by Favourite Author</h2>
-      <ul>
-        {topAuthorBooks.map((b, i) => (
-          <li key={i}>
-            {b["Title"]} — {b["Number of Pages"]} pages
-          </li>
-        ))}
-      </ul>
-    </>
-  )
+    </div>
+  );
 }

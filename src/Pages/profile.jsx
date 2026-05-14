@@ -1,13 +1,18 @@
 import { useContext } from 'react';
 import { BookDataContext } from '../BookDataContext'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import './pages.css';
 
 export function Profile() {
   
   const { parsedData } = useContext(BookDataContext);
 
   if (parsedData.length === 0) {
-    return <p>No data yet - upload your CSV on the home page.</p>;
+    return(
+    <div className="empty-state">
+      <p>No data yet, upload your CSV on the home page.</p>;
+    </div>
+    );
   }
 
   const booksRead = parsedData.filter( book => book["Exclusive Shelf"] == "read");
@@ -60,35 +65,66 @@ export function Profile() {
   const avgPages = booksRead.length ? Math.round(totalPagesRead / booksRead.length) : 0;
 
   return (
-    <>
-      <h1>Profile</h1>
-      <p>Your reading life at a glance</p>
-      <p> {totalBooksRead} Books Read</p>
-      <p> {totalPagesRead} Pages Read</p>
-      <p> {averageRating} Average Rating</p>
-      <p> {avgPages} Avg Pages / Book</p>
-      <p> {toRead.length} Want to Read</p>
-      <p> {reading.length} Current Reading</p>
+    <div className="page">
 
-      <p> Most Read Author: {topAuthor[0]} ({topAuthor[1]} books) </p>
+      <div className="page-header">
+        <h1 className="page-title">Profile</h1>
+        <p className="page-sub">Your reading life at a glance</p>
+      </div>
 
-      <h2>Ratings Breakdown</h2>
-      <ResponsiveContainer width="100%" height={100}>
-        <BarChart data={ratingData} margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
-          <XAxis
-            dataKey="rating"
-            axisLine={false}
-            tickLine={false}
-            tick={{ fontSize: 15 }}
-          />
-          <Tooltip 
-            formatter={(value) => [`${value} books`, null]}
-            cursor={{ fill: 'rgba(0, 0, 0, 0.1)' }}
-          />
-          <Bar dataKey="count" fill="#808080" />
-        </BarChart>
-      </ResponsiveContainer>
-      
-    </>
+      <div className="stat-grid"> 
+        <div className="stat-card accent"> 
+          <span className="stat-num">{totalBooksRead}</span>
+          <span className="stat-label">Books Read</span> 
+        </div>
+        <div className="stat-card">
+          <span className="stat-num">{totalPagesRead.toLocaleString()}</span>
+          <span className="stat-label">Pages Read</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-num">{averageRating}</span>
+          <span className="stat-label">Average Rating</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-num">{avgPages}</span>
+          <span className="stat-label">Avg Pages / Book</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-num">{toRead.length}</span>
+          <span className="stat-label">Want to Read</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-num">{reading.length}</span>
+          <span className="stat-label">Currently Reading</span>
+        </div>
+      </div>
+
+      {topAuthor && (
+        <div className="highlight-banner"> 
+          <span className="highlight-label">Most-read author</span>
+          <span className="highlight-value">
+            {topAuthor[0]} <em>({topAuthor[1]} books)</em>
+          </span>
+        </div>
+      )}
+
+    <h2>Ratings Breakdown</h2>
+    <ResponsiveContainer width="100%" height={100}>
+      <BarChart data={ratingData} margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
+        <XAxis
+          dataKey="rating"
+          axisLine={false}
+          tickLine={false}
+          tick={{ fontSize: 15 }}
+        />
+        <Tooltip 
+          formatter={(value) => [`${value} books`, null]}
+          cursor={{ fill: 'rgba(0, 0, 0, 0.1)' }}
+        />
+        <Bar dataKey="count" fill="#808080" />
+      </BarChart>
+    </ResponsiveContainer>   
+
+    </div>
   )
 }
