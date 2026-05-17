@@ -109,7 +109,7 @@ export function Highlights() {
 
       {topAuthorBooks.length > 0 && (
         <div className="chart-card">
-          <h2 className="chart-title">All books by {topAuthorEntry[0]}</h2>
+          <h2 className="chart-title">All read books by {topAuthorEntry[0]}</h2>
           <ul className="simple-list">
             {topAuthorBooks.map((b, i) => (
               <li key={i}>

@@ -1,28 +1,75 @@
-.navbar{
-    width: 100px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color:#f9f9f9;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1a1208;
+  --paper: #f5f0e8;
+  --cream: #ede8dc;
+  --amber: #c8873a;
+  --amber-light: #e8a85a;
+  --muted: #8a7d6b;
+  --card-bg: #faf7f2;
+  --border: #ddd5c4;
 }
 
-.navbar ul{
-    list-style: none;
-    padding: 8px 8px 8px 8px;
-    text-decoration: none;
-    font-size: 15px;
-    display: block;
-    transition: 0.3s;
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
 }
 
-.navbar li a{
-    color: black;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;      
+  width: 100px;
+  background: var(--ink);
+  border-right: 3px solid var(--amber);
+  display: flex;
+  flex-direction: column;  
+  padding: 2rem 0;
+  z-index: 100;
 }
 
-.navbar li a:hover{
-    color: rgb(48, 47, 47);
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--paper);
+  text-decoration: none;
+  padding: 0 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: column;  
+  gap: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.navbar ul li a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s, background 0.2s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+  color: var(--paper);
+  background: rgba(200, 135, 58, 0.2);
+}
+
+.navbar ul li a.active {
+  color: var(--amber-light);
+  border-left: 3px solid var(--amber);
 }

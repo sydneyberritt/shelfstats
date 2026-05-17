@@ -1,7 +1,8 @@
 .page {
-  max-width: 900px;
-  margin: 0 auto;
+  width: 90%;
   padding: 2.5rem 2rem 4rem;
+  margin-left: 100px;        
+  box-sizing: border-box;   
 }
 
 .page-header {
@@ -23,7 +24,6 @@
   margin-top: 0.3rem;
 }
 
-/* Stat grid */
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -269,3 +269,4 @@
   .charts-grid { grid-template-columns: 1fr; }
   .book-card-grid { grid-template-columns: 1fr 1fr; }
 }
+
