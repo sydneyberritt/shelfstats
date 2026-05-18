@@ -16,6 +16,7 @@
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--ink);
   line-height: 1.1;
+  text-align: left;
 }
 
 .page-sub {
@@ -270,3 +271,150 @@
   .book-card-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* Authors page */
+.author-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.author-entry {
+  border-bottom: 1px solid var(--border);
+}
+
+.author-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 6px;
+}
+
+.author-row:hover, .author-row.open {
+  background: var(--cream);
+}
+
+.author-pos {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--amber);
+  min-width: 2rem;
+}
+
+.author-name {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.author-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avg-rating {
+  font-size: 0.85rem;
+  color: var(--amber);
+}
+
+.author-book-count {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.author-chevron {
+  font-size: 0.65rem;
+  color: var(--muted);
+  min-width: 0.75rem;
+}
+
+/* expanded books */
+.author-books {
+  padding: 0.5rem 0 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.author-book-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.author-book-title {
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.author-book-detail {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.author-book-stars {
+  font-size: 0.75rem;
+  color: var(--amber);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* profile top layout */
+.profile-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+
+.profile-top .stat-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.profile-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.author-spotlight {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--amber);
+  border-radius: 10px;
+  padding: 1.5rem;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.author-spotlight-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.author-spotlight-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.author-spotlight-count {
+  font-size: 0.8rem;
+  color: var(--muted);
+}

@@ -26,7 +26,7 @@ export function Recent() {
     <div className="page">
       <div className="page-header">
         <h1 className="page-title">Recent Reads</h1>
-        <p className="page-sub">Your last {recent.length} finished books</p>
+        <p className="page-sub">Your recently finished books</p>
       </div>
 
       {recent.length > 0 ? (

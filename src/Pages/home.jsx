@@ -17,7 +17,7 @@ export function Home() {
       <div className="home-hero">
         <div className="home-hero-text">
           <p className="home-eyebrow">Your reading life, visualized</p>
-          <h1 className="home-title">ShelfStats</h1>
+          <h1 className="home-title">Shelf Stats</h1>
           <p className="home-subtitle">Upload your Goodreads export and explore beautiful stats about your reading habits.</p>
         </div>
 

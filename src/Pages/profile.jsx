@@ -60,10 +60,12 @@ export function Profile() {
   const yearData = Object.entries(yearCounts).sort((a, b) => a[0] - b[0]).map(([year, count]) => ({ year, count }));
 
   const ratingData = Object.entries(ratingCounts)
-  .map(([rating, count]) => ({ rating: rating, count }));
+  .map(([rating, count]) => ({ rating: `${rating} ★`, count }));
 
   const avgPages = booksRead.length ? Math.round(totalPagesRead / booksRead.length) : 0;
 
+  const totalRated = ratingData.reduce((t, d) => t + d.count, 0);
+  
   return (
     <div className="page">
 
@@ -72,58 +74,97 @@ export function Profile() {
         <p className="page-sub">Your reading life at a glance</p>
       </div>
 
-      <div className="stat-grid"> 
-        <div className="stat-card accent"> 
-          <span className="stat-num">{totalBooksRead}</span>
-          <span className="stat-label">Books Read</span> 
+      {/* top section: stats on left, author card on right */}
+      <div className="profile-top">
+        <div className="stat-grid">
+          <div className="stat-card accent">
+            <span className="stat-num">{totalBooksRead}</span>
+            <span className="stat-label">Books Read</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-num">{totalPagesRead.toLocaleString()}</span>
+            <span className="stat-label">Pages Read</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-num">{averageRating}</span>
+            <span className="stat-label">Avg Rating</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-num">{avgPages}</span>
+            <span className="stat-label">Avg Pages</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-num">{toRead.length}</span>
+            <span className="stat-label">Want to Read</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-num">{reading.length}</span>
+            <span className="stat-label">Reading Now</span>
+          </div>
         </div>
-        <div className="stat-card">
-          <span className="stat-num">{totalPagesRead.toLocaleString()}</span>
-          <span className="stat-label">Pages Read</span>
-        </div>
-        <div className="stat-card">
-          <span className="stat-num">{averageRating}</span>
-          <span className="stat-label">Average Rating</span>
-        </div>
-        <div className="stat-card">
-          <span className="stat-num">{avgPages}</span>
-          <span className="stat-label">Avg Pages / Book</span>
-        </div>
-        <div className="stat-card">
-          <span className="stat-num">{toRead.length}</span>
-          <span className="stat-label">Want to Read</span>
-        </div>
-        <div className="stat-card">
-          <span className="stat-num">{reading.length}</span>
-          <span className="stat-label">Currently Reading</span>
-        </div>
+
+        {topAuthor && (
+          <div className="author-spotlight">
+            <p className="author-spotlight-label">Most-read author</p>
+            <p className="author-spotlight-name">{topAuthor[0]}</p>
+            <p className="author-spotlight-count">{topAuthor[1]} books read</p>
+          </div>
+        )}
       </div>
 
-      {topAuthor && (
-        <div className="highlight-banner"> 
-          <span className="highlight-label">Most-read author</span>
-          <span className="highlight-value">
-            {topAuthor[0]} <em>({topAuthor[1]} books)</em>
-          </span>
-        </div>
-      )}
+      <div className="profile-charts">
+        {ratingData.some(d => d.count > 0) && (
+          <div className="chart-card">
+            <h2 className="chart-title">Ratings Breakdown</h2>
+            <ResponsiveContainer width="100%" height={180}>
+              <BarChart data={ratingData} margin={{ top: 8, right: 8, bottom: 8, left: -20 }}>
+                <XAxis dataKey="rating" axisLine={false} tickLine={false} tick={{ fontSize: 13, fill: 'var(--muted)' }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--muted)' }} allowDecimals={false} />
+                <Tooltip
+                  formatter={(v, name, props) => {
+                    const star = props.payload.rating;
+                    const pct = totalRated > 0 ? ((v / totalRated) * 100).toFixed(1) : 0;
+                    return [`${v} ${star} reads (${pct}%)`, ''];
+                  }}
+                  cursor={{ fill: 'rgba(200,135,58,0.08)' }}
+                  contentStyle={{
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '8px',
+                    fontSize: '0.85rem',
+                    color: 'var(--ink)'
+                  }}
+                />
+                <Bar dataKey="count" fill="var(--amber)" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
 
-    <h2>Ratings Breakdown</h2>
-    <ResponsiveContainer width="100%" height={100}>
-      <BarChart data={ratingData} margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
-        <XAxis
-          dataKey="rating"
-          axisLine={false}
-          tickLine={false}
-          tick={{ fontSize: 15 }}
-        />
-        <Tooltip 
-          formatter={(value) => [`${value} books`, null]}
-          cursor={{ fill: 'rgba(0, 0, 0, 0.1)' }}
-        />
-        <Bar dataKey="count" fill="#808080" />
-      </BarChart>
-    </ResponsiveContainer>   
+        {yearData.length > 0 && (
+          <div className="chart-card">
+            <h2 className="chart-title">Books by Year</h2>
+            <ResponsiveContainer width="100%" height={180}>
+              <BarChart data={yearData} margin={{ top: 8, right: 8, bottom: 8, left: -20 }}>
+                <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--muted)' }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--muted)' }} allowDecimals={false} />
+                <Tooltip
+                  formatter={(v) => [`${v} books`, '']}
+                  cursor={{ fill: 'rgba(200,135,58,0.08)' }}
+                  contentStyle={{
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '8px',
+                    fontSize: '0.85rem',
+                    color: 'var(--ink)'
+                  }}
+                />
+                <Bar dataKey="count" fill="var(--ink)" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+      </div>
 
     </div>
   )

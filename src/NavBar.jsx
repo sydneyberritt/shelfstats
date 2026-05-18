@@ -9,10 +9,10 @@ export function NavBar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar-brand">📚 ShelfStats</Link>
+      <Link to="/" className="navbar-brand">Goodreads</Link>
       <ul>
         <li><Link to="/profile">Profile</Link></li>
-        <li><Link to="/highlights">Highlights</Link></li>
+        <li><Link to="/authors">Top Authors</Link></li>
         <li><Link to="/recent">Recent</Link></li>
         <li><Link to="/wrapped">Wrapped</Link></li>
       </ul>
