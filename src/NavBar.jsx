@@ -16,7 +16,7 @@ export function NavBar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar-brand">Goodreads Profile</Link>
+      <Link to="/" className="navbar-brand">ShelfStats</Link>
       <ul>
         {links.map(({ to, label, icon: Icon }) => (
           <li key={to}>
