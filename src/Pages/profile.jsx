@@ -54,11 +54,11 @@ export function Profile() {
   // Books by year read
   const yearCounts = {};
   booksRead.forEach(b => {
-    const yr = b["Date Read"]?.split("/")[2] || b["Date Read"]?.split("-")[0];
+    const yr = b["Date Read"]?.split("/")[0] || b["Date Read"]?.split("-")[0];
     if (yr && yr.length === 4) yearCounts[yr] = (yearCounts[yr] || 0) + 1;
   });
-  const yearData = Object.entries(yearCounts).sort((a, b) => a[0] - b[0]).map(([year, count]) => ({ year, count }));
 
+  const yearData = Object.entries(yearCounts).sort((a, b) => a[0] - b[0]).map(([year, count]) => ({ year, count }));
   const ratingData = Object.entries(ratingCounts)
   .map(([rating, count]) => ({ rating: `${rating} ★`, count }));
 
@@ -66,6 +66,10 @@ export function Profile() {
 
   const totalRated = ratingData.reduce((t, d) => t + d.count, 0);
   
+
+  console.log("sample date:", booksRead[0]?.["Date Read"]);
+  console.log("yearData:", yearData);
+
   return (
     <div className="page">
 
@@ -112,7 +116,7 @@ export function Profile() {
         )}
       </div>
 
-      <div className="profile-charts">
+      <div className="charts-grid">
         {ratingData.some(d => d.count > 0) && (
           <div className="chart-card">
             <h2 className="chart-title">Ratings Breakdown</h2>
@@ -159,7 +163,7 @@ export function Profile() {
                     color: 'var(--ink)'
                   }}
                 />
-                <Bar dataKey="count" fill="var(--ink)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="count" fill="var(--amber)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

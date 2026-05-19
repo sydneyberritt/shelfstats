@@ -17,9 +17,12 @@ export function Wrapped() {
   const booksRead = parsedData.filter(b => b["Exclusive Shelf"] === "read");
   const withDates = booksRead.filter(b => b["Date Read"]);
 
+  const currentYear = new Date().getFullYear();
+
   // figure out which years i have data for, default to most recent
   const years = [...new Set(withDates.map(b => new Date(b["Date Read"]).getFullYear()))]
     .filter(Boolean)
+    .filter(y => y < currentYear)
     .sort((a, b) => b - a);
   const year = selectedYear || years[0] || new Date().getFullYear();
 
@@ -55,7 +58,7 @@ export function Wrapped() {
     <div className="page">
       <div className="page-header">
         <h1 className="page-title">{year} Wrapped</h1>
-        <p className="page-sub">Your year in books</p>
+        <p className="page-sub">Your years in books</p>
       </div>
 
       {years.length > 1 && (

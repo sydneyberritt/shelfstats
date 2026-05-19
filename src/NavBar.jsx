@@ -1,20 +1,31 @@
 import './NavBar.css'
 import { Link, useLocation } from 'react-router-dom'
+import { User, PenLine, BookOpen, Gift } from 'lucide-react'
 
 export function NavBar() {
   const location = useLocation();
 
-  // don't show the navbar on the home page
   if (location.pathname === '/') return null;
+
+  const links = [
+    { to: '/profile', label: 'Profile', icon: User },
+    { to: '/authors', label: 'Authors', icon: PenLine },
+    { to: '/recent', label: 'Recent', icon: BookOpen },
+    { to: '/wrapped', label: 'Wrapped', icon: Gift },
+  ];
 
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar-brand">Goodreads</Link>
+      <Link to="/" className="navbar-brand">Goodreads Profile</Link>
       <ul>
-        <li><Link to="/profile">Profile</Link></li>
-        <li><Link to="/authors">Top Authors</Link></li>
-        <li><Link to="/recent">Recent</Link></li>
-        <li><Link to="/wrapped">Wrapped</Link></li>
+        {links.map(({ to, label, icon: Icon }) => (
+          <li key={to}>
+            <Link to={to} className={location.pathname === to ? 'active' : ''}>
+              <Icon size={20} strokeWidth={1.5} />
+              <span>{label}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   )

@@ -41,7 +41,8 @@ export function Authors() {
       bookCount: data.books.length,
       avgRating: data.ratedCount > 0 ? (data.totalRating / data.ratedCount).toFixed(1) : null
     }))
-    .sort((a, b) => b.bookCount - a.bookCount || a.name.localeCompare(b.name));
+    .sort((a, b) => b.bookCount - a.bookCount || a.name.localeCompare(b.name))
+    .slice(0, 30);
 
   const uniqueAuthors = ranked.length;
   const mostReadAuthor = ranked[0];
@@ -54,18 +55,7 @@ export function Authors() {
     <div className="page">
       <div className="page-header">
         <h1 className="page-title">Top Authors</h1>
-        <p className="page-sub">Every author you've read, ranked by books read</p>
-      </div>
-
-      <div className="stat-grid" style={{ marginBottom: '2rem' }}>
-        <div className="stat-card accent">
-          <span className="stat-num">{uniqueAuthors}</span>
-          <span className="stat-label">Unique Authors</span>
-        </div>
-        <div className="stat-card">
-          <span className="stat-num">{mostReadAuthor?.bookCount}</span>
-          <span className="stat-label">Most books by one author</span>
-        </div>
+        <p className="page-sub">Your most read authors</p>
       </div>
 
       <div className="author-list">

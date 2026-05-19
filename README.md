@@ -1,3 +1,3 @@
-# Shelf Stats
+# ShelfStats
 
 Visualizer for personalized Goodreads data!
