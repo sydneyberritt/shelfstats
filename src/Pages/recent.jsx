@@ -22,6 +22,11 @@ export function Recent() {
   // fallback if no dates are filled in
   const noDate = booksRead.filter(b => !b["Date Read"]).slice(0, 5);
 
+  const getIsbn = (book) => {
+    const raw = book["ISBN"] || book["ISBN13"] || "";
+    return raw.replace(/[="]/g, "").trim();
+  }
+
   return (
     <div className="page">
       <div className="page-header">
@@ -42,6 +47,19 @@ export function Recent() {
               <div className="recent-row" key={i}>
                 <span className="recent-num">{i + 1}</span>
 
+                <div className="recent-cover">
+                  {getIsbn(book) ? (
+                    <img
+                      src={`https://covers.openlibrary.org/b/isbn/${getIsbn(book)}-M.jpg`}
+                      alt={title}
+                      className="recent-cover-img"
+                      onError={(e) => { e.target.style.display = 'none' }} // hide if no cover found
+                    />
+                  ) : (
+                    <div className="recent-cover-placeholder" />
+                  )}
+                </div>
+
                 <div className="recent-info">
                   <p className="recent-title">{title}</p>
                   <p className="recent-author">{author}</p>
@@ -50,7 +68,7 @@ export function Recent() {
                 <div className="recent-meta">
                   {rating > 0 && <span className="recent-stars">{STARS(rating)}</span>}
                   {dateRead && <span className="recent-date">{dateRead}</span>}
-                  {pages && <span className="recent-pages">{pages} pp</span>}
+                  {pages && <span className="recent-pages">{pages} pages</span>}
                 </div>
               </div>
             );

@@ -165,7 +165,7 @@
 .recent-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--border);
 }
@@ -178,7 +178,14 @@
   text-align: right;
 }
 
-.recent-info { flex: 1; min-width: 0; }
+.recent-info { 
+  flex: 1; 
+  min-width: 0; 
+  display: flex;              
+  flex-direction: column;    
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .recent-title {
   font-weight: 500;
@@ -203,9 +210,9 @@
   min-width: fit-content;
 }
 
-.recent-stars { font-size: 0.75rem; color: var(--amber); letter-spacing: 1px; }
-.recent-date { font-size: 0.75rem; color: var(--muted); }
-.recent-pages { font-size: 0.75rem; color: var(--muted); }
+.recent-stars { font-size: 0.85rem; color: var(--amber); letter-spacing: 1px; }
+.recent-date { font-size: 0.8rem; color: var(--muted); }
+.recent-pages { font-size: 0.8rem; color: var(--muted); }
 
 /* Author rank list */
 .author-rank-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -368,6 +375,13 @@
   white-space: nowrap;
 }
 
+.author-book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 /* profile top layout */
 .profile-top {
   display: grid;
@@ -417,4 +431,25 @@
 .author-spotlight-count {
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+.recent-cover {
+  width: 100px;
+  min-width: 100px;
+  height: 150px;
+}
+
+.recent-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+}
+
+.recent-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--border);
+  border-radius: 3px;
 }

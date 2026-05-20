@@ -65,10 +65,6 @@ export function Profile() {
   const avgPages = booksRead.length ? Math.round(totalPagesRead / booksRead.length) : 0;
 
   const totalRated = ratingData.reduce((t, d) => t + d.count, 0);
-  
-
-  console.log("sample date:", booksRead[0]?.["Date Read"]);
-  console.log("yearData:", yearData);
 
   return (
     <div className="page">

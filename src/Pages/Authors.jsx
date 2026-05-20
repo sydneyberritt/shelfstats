@@ -51,6 +51,11 @@ export function Authors() {
     setOpenAuthor(prev => prev === name ? null : name);
   };
 
+  const getIsbn = (book) => {
+    const raw = book["ISBN"] || book["ISBN13"] || "";
+    return raw.replace(/[="]/g, "").trim();
+  }
+
   return (
     <div className="page">
       <div className="page-header">
@@ -85,12 +90,28 @@ export function Authors() {
               <div className="author-books">
                 {author.books.map((book, j) => {
                   const rating = parseInt(book["My Rating"]) || 0;
+                  const isbn = getIsbn(book);
                   return (
                     <div className="author-book-row" key={j}>
+
+                      <div className="recent-cover">
+                        
+                        {isbn ? (
+                          <img
+                            src={`https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`}
+                            alt={book["Title"]}
+                            className="recent-cover-img"
+                            onError={(e) => { e.target.style.display = 'none' }}
+                          />
+                        ) : (
+                          <div className="recent-cover-placeholder" />
+                        )}
+                      </div>
+
                       <div className="author-book-info">
                         <p className="author-book-title">{book["Title"]}</p>
                         <p className="author-book-detail">
-                          {book["Number of Pages"] && `${book["Number of Pages"]} pp`}
+                          {book["Number of Pages"] && `${book["Number of Pages"]} pages`}
                           {book["Date Read"] && ` · read ${book["Date Read"]}`}
                         </p>
                       </div>
