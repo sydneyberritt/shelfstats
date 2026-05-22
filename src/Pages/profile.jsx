@@ -66,6 +66,8 @@ export function Profile() {
 
   const totalRated = ratingData.reduce((t, d) => t + d.count, 0);
 
+  const uniqueAuthors = Object.keys(authorCounts).length;
+
   return (
     <div className="page">
 
@@ -75,12 +77,24 @@ export function Profile() {
       </div>
 
       {/* top section: stats on left, author card on right */}
-      <div className="profile-top">
-        <div className="stat-grid">
-          <div className="stat-card accent">
-            <span className="stat-num">{totalBooksRead}</span>
-            <span className="stat-label">Books Read</span>
+      <div className="profile-stats-layout">
+
+
+      <div className="profile-left">
+        <div className="hero-books">
+          <span className="stat-label">Books Read</span>
+          <span className="hero-books-num">{totalBooksRead}</span>
+        </div>
+        {topAuthor && (
+          <div className="author-spotlight">
+            <p className="author-spotlight-label">Top Author</p>
+            <p className="author-spotlight-name">{topAuthor[0]}</p>
+            <p className="author-spotlight-count">{topAuthor[1]} books read</p>
           </div>
+        )}
+      </div> 
+
+        <div className="stat-grid">
           <div className="stat-card">
             <span className="stat-num">{totalPagesRead.toLocaleString()}</span>
             <span className="stat-label">Pages Read</span>
@@ -101,15 +115,11 @@ export function Profile() {
             <span className="stat-num">{reading.length}</span>
             <span className="stat-label">Reading Now</span>
           </div>
-        </div>
-
-        {topAuthor && (
-          <div className="author-spotlight">
-            <p className="author-spotlight-label">Most-read author</p>
-            <p className="author-spotlight-name">{topAuthor[0]}</p>
-            <p className="author-spotlight-count">{topAuthor[1]} books read</p>
+          <div className="stat-card">
+            <span className="stat-num">{uniqueAuthors}</span>
+            <span className="stat-label">Unique Authors</span>
           </div>
-        )}
+        </div>
       </div>
 
       <div className="charts-grid">
@@ -124,7 +134,7 @@ export function Profile() {
                   formatter={(v, name, props) => {
                     const star = props.payload.rating;
                     const pct = totalRated > 0 ? ((v / totalRated) * 100).toFixed(1) : 0;
-                    return [`${v} ${star} reads (${pct}%)`, ''];
+                    return [`${v} books`, ''];
                   }}
                   cursor={{ fill: 'rgba(200,135,58,0.08)' }}
                   contentStyle={{

@@ -74,6 +74,9 @@ export function Authors() {
             >
               <span className="author-pos">{i + 1}</span>
               <span className="author-name">{author.name}</span>
+              
+              
+
               <div className="author-row-meta">
                 {author.avgRating && (
                   <span className="author-avg-rating">★ {author.avgRating}</span>
