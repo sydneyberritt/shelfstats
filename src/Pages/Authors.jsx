@@ -42,7 +42,7 @@ export function Authors() {
       avgRating: data.ratedCount > 0 ? (data.totalRating / data.ratedCount).toFixed(1) : null
     }))
     .sort((a, b) => b.bookCount - a.bookCount || a.name.localeCompare(b.name))
-    .slice(0, 30);
+    .slice(0, 20);
 
   const uniqueAuthors = ranked.length;
   const mostReadAuthor = ranked[0];

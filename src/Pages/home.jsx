@@ -18,7 +18,7 @@ export function Home() {
         <div className="home-hero-text">
           <p className="home-eyebrow">Your reading life, visualized</p>
           <h1 className="home-title">ShelfStats</h1>
-          <p className="home-subtitle">Upload your Goodreads export and explore beautiful stats about your reading habits.</p>
+          <p className="home-subtitle">Upload your Goodreads library and explore detailed stats about your reading habits.</p>
         </div>
 
         <div className="home-card">
@@ -27,7 +27,7 @@ export function Home() {
             <div>
               <p className="step-label">Export your data</p>
               <a href="https://www.goodreads.com/review/import" target="_blank" rel="noreferrer" className="btn btn-outline">
-                Go to Goodreads →
+                Go to Goodreads
               </a>
             </div>
           </div>
@@ -48,7 +48,7 @@ export function Home() {
             <div>
               <p className="step-label">Explore your stats</p>
               <Link to="/profile">
-                <button className="btn btn-primary" disabled={!hasData}>View Profile →</button>
+                <button className="btn btn-primary" disabled={!hasData}>View Profile</button>
               </Link>
             </div>
           </div>
