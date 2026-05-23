@@ -94,7 +94,7 @@ export function Profile() {
         )}
       </div> 
 
-        <div className="stat-grid">
+        <div className="profile-stat-grid">
           <div className="stat-card">
             <span className="stat-num">{totalPagesRead.toLocaleString()}</span>
             <span className="stat-label">Pages Read</span>

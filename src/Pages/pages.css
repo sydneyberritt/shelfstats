@@ -26,13 +26,20 @@
   text-align: left;
 }
 
-.stat-grid {
+.profile-stat-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 0;
   height: 100%;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .stat-card {
