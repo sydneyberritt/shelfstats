@@ -99,8 +99,14 @@
   background: var(--amber);
   color: white;
 }
-.btn-primary:hover:not(:disabled) { background: var(--amber-light); }
-.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary:hover:not(:disabled) { 
+  background: var(--amber-light); 
+}
+
+.btn-primary:disabled { 
+  opacity: 0.4; cursor: not-allowed; 
+}
 
 .file-label { cursor: pointer; }
 

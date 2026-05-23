@@ -131,11 +131,7 @@ export function Profile() {
                 <XAxis dataKey="rating" axisLine={false} tickLine={false} tick={{ fontSize: 13, fill: 'var(--muted)' }} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--muted)' }} allowDecimals={false} />
                 <Tooltip
-                  formatter={(v, name, props) => {
-                    const star = props.payload.rating;
-                    const pct = totalRated > 0 ? ((v / totalRated) * 100).toFixed(1) : 0;
-                    return [`${v} books`, ''];
-                  }}
+                  formatter={(v) => [`${v} ${v === 1 ? 'book' : 'books'}`, '']}
                   cursor={{ fill: 'rgba(200,135,58,0.08)' }}
                   contentStyle={{
                     background: 'var(--card-bg)',

@@ -56,7 +56,9 @@
   box-sizing: border-box;
 }
 
-.stat-card.accent { border-left: 4px solid var(--amber); }
+.stat-card.accent { 
+  border-left: 4px solid var(--amber); 
+}
 
 .stat-num {
   font-family: 'Playfair Display', serif;
@@ -100,7 +102,12 @@
   font-size: 1.1rem;
 }
 
-.highlight-value em { font-style: normal; color: var(--muted); font-size: 0.9rem; font-family: 'DM Sans', sans-serif; }
+.highlight-value em { 
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-family: 'DM Sans', sans-serif; 
+}
 
 /* Charts */
 .charts-grid {
@@ -223,12 +230,29 @@
   min-width: fit-content;
 }
 
-.recent-stars { font-size: 0.85rem; color: var(--amber); letter-spacing: 1px; }
-.recent-date { font-size: 0.8rem; color: var(--muted); }
-.recent-pages { font-size: 0.8rem; color: var(--muted); }
+.recent-stars { 
+  font-size: 0.85rem; 
+  color: var(--amber); 
+  letter-spacing: 1px; 
+}
+
+.recent-date { 
+  font-size: 0.8rem; 
+  color: var(--muted); 
+}
+
+.recent-pages { 
+  font-size: 0.8rem;
+  color: var(--muted); 
+}
 
 /* Author rank list */
-.author-rank-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.author-rank-list { 
+  list-style: none; 
+  display: flex; 
+  flex-direction: column;
+  gap: 0.75rem; 
+}
 
 .author-rank-row {
   display: flex;
@@ -243,7 +267,10 @@
   font-size: 1rem;
 }
 
-.author-rank-name { font-size: 0.9rem; min-width: 160px; }
+.author-rank-name { 
+  font-size: 0.9rem;
+  min-width: 160px; 
+}
 
 .author-rank-bar-wrap {
   flex: 1;
@@ -261,11 +288,25 @@
   transition: width 0.4s ease;
 }
 
-.author-rank-count { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+.author-rank-count { 
+  font-size: 0.8rem; 
+  color: var(--muted);
+  white-space: nowrap;
+}
 
 /* Misc */
-.simple-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.simple-list li { font-size: 0.9rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.simple-list { 
+  list-style: none; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.5rem; 
+}
+
+.simple-list li { 
+  font-size: 0.9rem; 
+  padding: 0.4rem 0; 
+  border-bottom: 1px solid var(--border); 
+}
 
 .year-chip {
   padding: 0.3rem 0.8rem;
@@ -274,9 +315,15 @@
   border: 1.5px solid var(--border);
   color: var(--muted);
 }
-.year-chip.active { border-color: var(--amber); color: var(--amber); font-weight: 600; }
+.year-chip.active { 
+  border-color: var(--amber); 
+  color: var(--amber); 
+  font-weight: 600; 
+}
 
-.muted { color: var(--muted); }
+.muted { 
+  color: var(--muted); 
+}
 
 .empty-state {
   display: flex;
