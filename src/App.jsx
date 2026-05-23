@@ -1,11 +1,11 @@
 import './App.css'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home } from './Pages/home'
+import { Home } from './Pages/Home'
 import { NavBar } from './NavBar'
-import { Profile } from './Pages/profile'
-import { Authors } from './Pages/authors'
-import { Recent } from './Pages/recent'
-import { Wrapped } from './Pages/wrapped'
+import { Profile } from './Pages/Profile'
+import { Authors } from './Pages/Authors'
+import { Recent } from './Pages/Recent'
+import { Wrapped } from './Pages/Wrapped'
 import { BookDataProvider } from './BookDataContext';
 
 function App() {
